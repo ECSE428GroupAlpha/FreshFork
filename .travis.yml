@@ -1,0 +1,20 @@
+branches:
+  only:
+    - master
+jobs:
+  include:
+    - stage: backend
+      language: java
+      script:
+        - cd backend
+        - mvn install
+    - stage: frontend
+      language: node_js
+      node_js:
+        - stable
+      before_install:
+        - cd frontend
+      install:
+        - npm install
+      script:
+        - CI=false npm run build
