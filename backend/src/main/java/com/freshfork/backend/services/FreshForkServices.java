@@ -53,7 +53,12 @@ public class FreshForkServices {
 	//RECIPE METHODS
 	
 	@Transactional
-	public Recipe createRecipe() {
+	public Recipe createRecipe(String author, String recipeSteps,String rating) {
+		Recipe recipe = new Recipe();
+		User user = userRepository.findByName(author);
+		recipe.setRecipeSteps(recipeSteps);
+		recipe.setRating(rating);
+		return recipeRepository.save(recipe);
 		
 	}
 	
