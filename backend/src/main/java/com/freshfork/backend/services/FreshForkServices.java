@@ -9,6 +9,8 @@ import com.freshfork.backend.dao.IngredientRepository;
 import com.freshfork.backend.dao.IngredientUsageRepository;
 import com.freshfork.backend.dao.RecipeRepository;
 import com.freshfork.backend.dao.UserRepository;
+import com.freshfork.backend.model.Recipe;
+import com.freshfork.backend.model.User;
 
 @Service
 public class FreshForkServices {
@@ -31,7 +33,19 @@ public class FreshForkServices {
 	
 	@Transactional
 	public User createUser(String name, String email, String password, boolean isPro) {
+		User user = new User();
 		
+		if(userRepository.findAllByEmail(email).size() == 1) {
+			throw new IllegalArgumentException("Email is already taken.");
+		}
+		else {
+			user.setName(name);
+			user.setEmail(email);
+			user.setPassword(password);
+			user.setIsPro(isPro);
+		}
+		
+		return userRepository.save(user);
 	}
 	
 	
