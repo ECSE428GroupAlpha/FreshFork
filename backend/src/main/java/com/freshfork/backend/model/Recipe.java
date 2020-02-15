@@ -1,6 +1,9 @@
 package com.freshfork.backend.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
 import java.util.Set;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -58,7 +61,6 @@ private String name;
 public void setName(String value) {
 this.name = value;
     }
-@Id
 public String getName() {
 return this.name;
     }
@@ -77,5 +79,15 @@ this.rating = value;
     }
 public String getRating() {
 return this.rating;
+    }
+private int recipeID;
+
+public void setRecipeID(int value) {
+this.recipeID = value;
+    }
+@Id
+@GeneratedValue(strategy = GenerationType.AUTO)
+public int getRecipeID() {
+return this.recipeID;
        }
    }

@@ -1,6 +1,9 @@
 package com.freshfork.backend.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
 import java.util.Set;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -58,6 +61,7 @@ public void setUId(int value) {
 this.uId = value;
     }
 @Id
+@GeneratedValue(strategy = GenerationType.AUTO)
 public int getUId() {
 return this.uId;
     }

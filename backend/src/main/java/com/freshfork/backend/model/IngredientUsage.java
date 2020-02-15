@@ -1,6 +1,8 @@
 package com.freshfork.backend.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Id;
 
@@ -36,13 +38,14 @@ this.unitQuantity = value;
 public String getUnitQuantity() {
 return this.unitQuantity;
     }
-private int ingedientUsageID;
+private int ingredientUsageID;
 
-public void setIngedientUsageID(int value) {
-this.ingedientUsageID = value;
+public void setIngredientUsageID(int value) {
+this.ingredientUsageID = value;
     }
 @Id
-public int getIngedientUsageID() {
-return this.ingedientUsageID;
+@GeneratedValue(strategy = GenerationType.AUTO)
+public int getIngredientUsageID() {
+return this.ingredientUsageID;
        }
    }
