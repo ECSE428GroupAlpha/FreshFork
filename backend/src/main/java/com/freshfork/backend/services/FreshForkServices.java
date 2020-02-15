@@ -12,6 +12,7 @@ import com.freshfork.backend.dao.UserRepository;
 import com.freshfork.backend.model.Recipe;
 import com.freshfork.backend.model.User;
 
+import com.freshfork.backend.model.*;
 @Service
 public class FreshForkServices {
 	@Autowired
@@ -57,8 +58,21 @@ public class FreshForkServices {
 	}
 	
 	@Transactional
-	public Recipe deleteRecipe(String recipeName) {
+	public String deleteRecipe(int recipeID) {
+		String recipeName;
 		
+		Recipe recipeToDelete = recipeRepository.findByRecipeID(recipeID);
+		if(recipeToDelete == null) {
+			//Recipe could not be found, returning null
+			return null;
+		}
+		else {
+			//Store recipeName in new string before deleting recipe
+			recipeName = new String(recipeToDelete.getName());
+			recipeRepository.delete(recipeToDelete);
+		}
+		
+		return recipeName;
 	}
 	
 	@Transactional
