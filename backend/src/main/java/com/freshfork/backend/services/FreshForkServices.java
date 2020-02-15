@@ -70,8 +70,20 @@ public class FreshForkServices {
 	//AUTHENTICATION
 	
 	@Transactional
-	public boolean authenticateUser() {
+	public boolean authenticateUser(String email, String password) {
+		User user = userRepository.findByEmail(email);
 		
+		if(user == null) {
+			throw new IllegalArgumentException("Account with given email does not exist.");
+		}
+		else {
+			if(password.equals(user.getPassword())) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
 	}
 	
 	
