@@ -1,0 +1,47 @@
+namespace main.java.com.freshfork.backend.models;
+
+class Recipe
+{
+  rname;
+  recipe; //instruction
+rating;
+* -- * User; // favorite
+}
+
+class User
+{
+   int uid;
+name;
+email;
+password;
+boolean isPro;
+1 -- * Recipe;
+}
+
+class Diet
+{
+  dname;
+* -- * Recipe;
+  * -- * User;
+}
+
+class Ingredient
+{
+  int calories;
+  double protein;
+  double carb;
+  int sugar;
+  double fats;
+  double iron;
+  iname;
+  int quantity;
+unitSI;
+  1 -- * IngredientUsage;
+  * -- * User; //allergies
+}
+
+class IngredientUsage
+{
+  int unitQuantity;
+* -- 1 Recipe;
+}
