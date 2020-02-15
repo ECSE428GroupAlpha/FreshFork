@@ -50,11 +50,11 @@
             <version>2.2.3.RELEASE</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework/org.springframework.transaction -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-tx -->
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>org.springframework.transaction</artifactId>
-            <version>3.1.0.RELEASE</version>
+            <artifactId>spring-tx</artifactId>
+            <version>5.2.3.RELEASE</version>
         </dependency>
 
 
