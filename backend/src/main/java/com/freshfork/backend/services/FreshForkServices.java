@@ -13,20 +13,17 @@ import com.freshfork.backend.model.Recipe;
 import com.freshfork.backend.model.User;
 
 import com.freshfork.backend.model.*;
+
 @Service
 public class FreshForkServices {
 	@Autowired
 	DietRepository dietRepository;
-	
 	@Autowired
 	IngredientUsageRepository ingredientUsageRepository;
-	
 	@Autowired
 	IngredientRepository ingredientRepository;
-	
 	@Autowired
 	RecipeRepository recipeRepository;
-	
 	@Autowired
 	UserRepository userRepository;
 	
@@ -53,7 +50,7 @@ public class FreshForkServices {
 	//RECIPE METHODS
 	
 	@Transactional
-	public Recipe createRecipe(String author, String recipeSteps,String rating) {
+	public Recipe createRecipe(String author, String recipeSteps, String rating) {
 		Recipe recipe = new Recipe();
 		User user = userRepository.findByName(author);
 		recipe.setRecipeSteps(recipeSteps);
@@ -104,6 +101,5 @@ public class FreshForkServices {
 			}
 		}
 	}
-	
 	
 }
