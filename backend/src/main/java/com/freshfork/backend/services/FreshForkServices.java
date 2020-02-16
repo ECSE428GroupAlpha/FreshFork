@@ -4,6 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.*;
+
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+
 import com.freshfork.backend.dao.DietRepository;
 import com.freshfork.backend.dao.IngredientRepository;
 import com.freshfork.backend.dao.IngredientUsageRepository;
@@ -18,17 +23,22 @@ import com.freshfork.backend.model.*;
 public class FreshForkServices {
 	@Autowired
 	DietRepository dietRepository;
+	
 	@Autowired
 	IngredientUsageRepository ingredientUsageRepository;
+
 	@Autowired
 	IngredientRepository ingredientRepository;
+
 	@Autowired
 	RecipeRepository recipeRepository;
+
 	@Autowired
 	UserRepository userRepository;
-	
-	//USER METHODS
-	
+
+
+	// USER METHODS
+
 	@Transactional
 	public User createUser(String name, String email, String password, boolean isPro) {
 		User user = new User();
@@ -45,10 +55,9 @@ public class FreshForkServices {
 		
 		return userRepository.save(user);
 	}
-	
-	
-	//RECIPE METHODS
-	
+
+	// RECIPE METHODS
+
 	@Transactional
 	public Recipe createRecipe(String author, String recipeSteps, String rating) {
 		Recipe recipe = new Recipe();
@@ -58,7 +67,7 @@ public class FreshForkServices {
 		return recipeRepository.save(recipe);
 		
 	}
-	
+
 	@Transactional
 	public String deleteRecipe(int recipeID) {
 		String recipeName;
@@ -76,15 +85,14 @@ public class FreshForkServices {
 		
 		return recipeName;
 	}
-	
+
 	@Transactional
-	public Recipe filterRecipeByDiet(String dietName) {
-		
+	public List<Recipe> filterRecipeByDiet(String dietName) {
+		return recipeRepository.listByDiet(dietName);
 	}
-	
-	
-	//AUTHENTICATION
-	
+
+	// AUTHENTICATION
+
 	@Transactional
 	public boolean authenticateUser(String email, String password) {
 		User user = userRepository.findByEmail(email);
@@ -101,5 +109,9 @@ public class FreshForkServices {
 			}
 		}
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> b6457ff53a5b04ecdf539f3bb9d926372b1be07a
 }
