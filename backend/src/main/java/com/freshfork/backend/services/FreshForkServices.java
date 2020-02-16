@@ -109,9 +109,4 @@ public class FreshForkServices {
 			}
 		}
 	}
-<<<<<<< HEAD
-	
-=======
-
->>>>>>> b6457ff53a5b04ecdf539f3bb9d926372b1be07a
 }
