@@ -56,22 +56,19 @@ export default {
         //   message: 'qwert'});
 
         axios
-          .get(REST_ENDPOINT + "/login", null, {
+          .get(REST_ENDPOINT + "/login", {
             params: {
-              inputEmail: this.inputEmail,
-              inputPassword: this.inputPassword
+              email: this.inputEmail,
+              password: this.inputPassword
             }
           })
-          .then(res =>
-            this.$buefy.dialog.alert(
-              "success using "+ res.data.inputEmail +" email"
-              // "Recipe " + res.data.recipeName + " created succesfully"
-            )
-          )
+          .then(res => {
+              this.$buefy.dialog.alert(res.data + "success");
+          })
           .catch(err => {
             // "invalid email : "+res.data.inputEmail+" and invalid password "+res.data.inputPassword+" try again"
             this.errMsg = err.response.data.message;
-            this.$buefy.dialog.alert("Invalid email or password"+this.errMsg);
+            this.$buefy.dialog.alert(this.errMsg);
         }); 
       }
     },
