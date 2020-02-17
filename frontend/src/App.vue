@@ -7,6 +7,7 @@
       <router-link to="/userprofile">User Profile</router-link>|
       <router-link to="/createrecipe">Create Recipe</router-link>
       <router-link to="/register">Register</register>
+      <router-link to="/login">Login</register>
 
       
     </div>
