@@ -42,13 +42,13 @@ const routes = [
     name: "createRecipe",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/CreateRecipe.vue")
-  }
+  },
   {
     path: "/register",
     name: "register",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/register.vue")
-  }
+  },
   {
     path: "/login",
     name: "login",

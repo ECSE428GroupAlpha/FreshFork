@@ -124,7 +124,6 @@
                         </section>
                         </template>
                     </div>
-
                 </section>
             </template>
         </div>
@@ -133,12 +132,11 @@
 
 
 <script>
+import axios from "axios";
+import { REST_ENDPOINT } from "../utils/Util";
+
 export default {
     name: "userprofile",
-
-    components:{
-
-    },
 
     data(){
         return{
