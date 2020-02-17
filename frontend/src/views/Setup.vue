@@ -45,12 +45,15 @@
         <b-radio v-model="calorieSelection" name="name" native-value="High">High</b-radio>
       </div>
 
-      <div class="button" style="width:100%">Submit</div>
+      <div class="button" style="width:100%" @click="submitSetup">Submit</div>
     </section>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+import { REST_ENDPOINT } from "../utils/Util";
+
 export default {
   name: "setup",
   data() {
@@ -79,6 +82,15 @@ export default {
     getIngredients() {
       //TODO: get ingredients from backend (input = toAdd)
       return ["sugar", "potato", "brocolli"];
+    },
+    submitSetup() {
+      let endpoint =
+        this.dietSelection === ""
+          ? REST_ENDPOINT + "/recipe/list"
+          : REST_ENDPOINT +
+            "/recipe/filterByDiet?dietname=" +
+            this.dietSelection;
+      axios.get(endpoint);
     }
   },
   computed: {
@@ -93,10 +105,12 @@ export default {
       });
     }
   },
-  mounted: {
-    getDiets() {
-      //TODO: get diets from backend
-    }
+  mounted() {
+    axios.get(REST_ENDPOINT + "/diet/all").then(res => {
+      this.diets = res.data;
+    });
+
+    //TODO: get ingredients from backend
   }
 };
 </script>
