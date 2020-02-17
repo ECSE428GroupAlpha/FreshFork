@@ -132,8 +132,8 @@
 
 
 <script>
-import axios from "axios";
-import { REST_ENDPOINT } from "../utils/Util";
+// import axios from "axios";
+// import { REST_ENDPOINT } from "../utils/Util";
 
 export default {
     name: "userprofile",
