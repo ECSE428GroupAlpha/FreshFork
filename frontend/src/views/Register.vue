@@ -8,8 +8,12 @@
   </div>
     <div class="col-md-3">
   <div class="form-group">
-    <label for="username">Username</label>
-    <input type="text" class="form-control" id="username" v-model="username" required placeholder="Username">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" v-model="name" required placeholder="Name">
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="text" class="form-control" id="email" v-model="email" required placeholder="Email">
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
@@ -23,10 +27,9 @@
     <input type="password" class="form-control" id="reenterpassword" v-model="reenterpassword" required placeholder="Enter the same password">
   </div>
 <div v-if="password != reenterpassword" class="text-danger">
-password doesn't match
   </div>
 <br>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary" @click="register">Submit</button>
   </div>
     <div class="col-md-3">
     
@@ -36,21 +39,58 @@ password doesn't match
 </template>
 
 <script>
+import axios from "axios";
+import { REST_ENDPOINT } from "../utils/Util";
+
 export default {
-  name:"register",
+  name: "register",
+
   data(){
     return{
-      username:"",
-      password:"",
-      reenterpassword:""
+      name: '',
+      email: '',
+      password: '',
+      reenterpassword: '',
+      isPro: true
     }
   },
+
   methods:{
-    register:function(){
-      console.log("Username "+ this.username);
-    }
+    register(){
+      if(this.email == '' || this.password == '' || this.reenterpassword == ''){
+        this.$buefy.dialog.confirm({
+          message: 'All fields must be filled.'});
+      }
+      else if(this.password != this.reenterpassword){
+        this.$buefy.dialog.confirm({
+          message: 'Passwords must match'});
+      }
+      else{
+        // this.$buefy.dialog.confirm({
+        //   message: 'qwert'});
+
+        axios
+          .post(REST_ENDPOINT + "/users/create", null,{
+            params: {
+              name: this.name,
+              password: this.password,
+              email: this.email,
+              isPro: this.isPro
+            }
+          })
+          .then(res => {
+              this.$buefy.dialog.alert("User with ID "+res.data.uid+" created");
+          })
+          .catch(err => {
+            // "invalid email : "+res.data.inputEmail+" and invalid password "+res.data.inputPassword+" try again"
+            this.errMsg = err.response.data.message;
+            this.$buefy.dialog.alert(this.errMsg);
+        }); 
+      }
+    },
+
   }
-};
+}
 </script>
 
 <style scoped>
