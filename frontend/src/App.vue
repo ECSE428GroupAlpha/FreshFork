@@ -6,6 +6,9 @@
       <router-link to="/setup">Setup</router-link>|
       <router-link to="/userprofile">User Profile</router-link>|
       <router-link to="/createrecipe">Create Recipe</router-link>
+      <router-link to="/register">Register</register>
+
+      
     </div>
     <router-view />
   </div>
