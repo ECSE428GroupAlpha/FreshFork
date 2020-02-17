@@ -1,7 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import UserProfile from '../components/UserProfile.vue'
+import UserProfile from '../components/UserProfile.vue';
+import CreateRecipe from "../views/CreateRecipe.vue";
 
 Vue.use(VueRouter);
 
@@ -33,8 +34,12 @@ const routes = [
     path: '/userprofile',
     name: 'UserProfile',
     component: UserProfile
+  },
+  {
+    path: "/createRecipe",
+    name: "createRecipe",
+    component: CreateRecipe
   }
-
 ];
 
 const router = new VueRouter({
