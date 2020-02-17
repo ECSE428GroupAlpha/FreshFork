@@ -1,7 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import Register from "../views.Register.vue";
+import Register from "../views/Register.vue";
+import Login from "../views/Login.vue";
 
 
 Vue.use(VueRouter);
@@ -33,6 +34,7 @@ const routes = [
   {
     path: "/userprofile",
     name: "UserProfile",
+    // component: UserProfile
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/UserProfile.vue")
   },
@@ -41,12 +43,16 @@ const routes = [
     name: "createRecipe",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/CreateRecipe.vue")
-  }
+  },
   {
     path: "/register",
     name: "register",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/register.vue")
+    component: Register
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: Login
   }
 ];
 
