@@ -5,6 +5,7 @@
       <router-link to="/about">About</router-link>|
       <router-link to="/setup">Setup</router-link>|
       <router-link to="/userprofile">User Profile</router-link>|
+      <router-link to="/createrecipe">Create Recipe</router-link>
     </div>
     <router-view />
   </div>
