@@ -1,8 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import Register from "../views.Register.vue";
-import Login from "../views.Login.vue";
+import Register from "../views/Register.vue";
+import Login from "../views/Login.vue";
 
 
 Vue.use(VueRouter);
@@ -42,18 +42,16 @@ const routes = [
     name: "createRecipe",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/CreateRecipe.vue")
-  }
+  },
   {
     path: "/register",
     name: "register",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/register.vue")
-  }
+    component: Register
+  },
   {
     path: "/login",
     name: "login",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/login.vue")
+    component: Login
   }
 ];
 
