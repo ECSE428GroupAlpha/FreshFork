@@ -71,7 +71,7 @@ export default {
           .catch(err => {
             // "invalid email : "+res.data.inputEmail+" and invalid password "+res.data.inputPassword+" try again"
             this.errMsg = err.response.data.message;
-            this.$buefy.dialog.alert("Invalid email or password"+this.errMsg);
+            this.$buefy.dialog.alert("Invalid email or password "+this.errMsg+" using email "+this.inputEmail);
         }); 
       }
     },
