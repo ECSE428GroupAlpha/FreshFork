@@ -1,7 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-
+import UserProfile from '../components/UserProfile.vue';
+import CreateRecipe from "../views/CreateRecipe.vue";
 
 Vue.use(VueRouter);
 
@@ -34,8 +35,12 @@ const routes = [
     name: "UserProfile",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/UserProfile.vue")
+  },
+  {
+    path: "/createRecipe",
+    name: "createRecipe",
+    component: CreateRecipe
   }
-
 ];
 
 const router = new VueRouter({
