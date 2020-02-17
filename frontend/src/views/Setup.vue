@@ -107,7 +107,7 @@ export default {
   },
   mounted() {
     axios.get(REST_ENDPOINT + "/diet/all").then(res => {
-      this.diets = res.data;
+      this.diets = res.data === [] ? [] : res.data.map(diet => diet.name);
     });
 
     //TODO: get ingredients from backend
