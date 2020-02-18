@@ -1,6 +1,9 @@
 <template>
   <div class="createRecipe">
     <section>
+      <b-field label="User ID">
+        <b-input v-model="name"></b-input>
+      </b-field>
       <b-field label="Name">
         <b-input v-model="name"></b-input>
       </b-field>
@@ -26,7 +29,7 @@ export default {
   name: "createRecipe",
   data() {
     return {
-      authorID: 12312412,
+      authorID: 1,
       name: "",
       steps: "",
       rating: 0,

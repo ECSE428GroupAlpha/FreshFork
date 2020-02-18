@@ -1,34 +1,31 @@
 <script>
-
-
+import axios from "axios";
+import { REST_ENDPOINT } from "../utils/Util";
 
 export default {
-  
+  name: "listRecipes",
   data() {
     return {
-    }
+      recipes : []
+    };
   },
-  methods:{
-    getRecipes(){
-      //get recipes from backend
-      return [{title: "chicken nodle", rating: 4.9},{title: "chicken nodle", rating: 5.9}]
+  methods: {
+    getRecipes() {
+    // Initializing people from backend
+    axios.get(REST_ENDPOINT + "/recipe/list")
+      .then(response => {
+        // JSON responses are automatically parsed.
+        this.recipes = response.data
+      })
+      .catch(err => {
+        this.$buefy.dialog.alert(err.response.data.message);
+      })
+    },
+    addRecipe(){
+      this.recipes.push({recipeName: "a", steps: "a", rating: 2.0})
     }
-  },
-  computed:{ 
-    setRecipeList(){
-      return this.getRecipes();
-    }
-  },
-}
-// @ is an alias to /src
-//import HelloWorld from "@/components/HelloWorld.vue";
-
-//export default {
-//  name: "home",
-//  components: {
-//    HelloWorld
-//  }
-//};
+  }
+};
 </script>
 
 <template>
@@ -41,7 +38,7 @@ export default {
           <b>Home</b>
         </font>
       </p>
-      <img alt="Vue logo" src="../assets/logo.png" />
+      <img alt="Vue logo" src="../assets/freshForkLogo.png" />
       <HelloWorld msg="Welcome to Your Vue.js App" />
     </section>
     <section style="margin:auto;">
@@ -50,12 +47,12 @@ export default {
       </font>
       <section style="float:left">
         <div id="app">
-          <div v-for="(recipe, index) in setRecipeList"
+          <div v-for="(recipe, index) in recipes"
             :key="index">
 
             <div class="button recipe" style="height:100px">
               <div class="card_content">
-                <div class="h3" style="font-weight:bold">{{recipe.title}}</div>
+                <div class="h3" style="font-weight:bold">{{recipe.recipeName}}</div>
                 <div class="card_rating" style="color:#42b883;">Rating {{recipe.rating}}</div>
               </div>
             </div>
@@ -64,8 +61,8 @@ export default {
         </div>
       </section>
       <section style="position: absolute; right: 50px">
-        <div class="button" style="width:150px;" >Add Recipe</div><br/>
-        <div class="button" style="width:150px;">Search Recipes</div>
+        <div class="button" style="width:150px;" @click="addRecipe">Add Recipe</div><br/>
+        <div class="button" style="width:150px;" @click="getRecipes">Search Recipes</div>
       </section>
     </section>
   </div>
